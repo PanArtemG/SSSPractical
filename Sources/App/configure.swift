@@ -1,5 +1,5 @@
 import Fluent
-import FluentPostgresDriver
+import FluentSQLiteDriver
 import Vapor
 import Leaf
 
@@ -9,6 +9,8 @@ public func configure(_ app: Application) throws {
     
     app.views.use(.leaf)
     app.leaf.cache.isEnabled = app.environment.isRelease
+    
+    
 
 //    app.databases.use(.postgres(
 //        hostname: Environment.get("DATABASE_HOST") ?? "localhost",
@@ -17,12 +19,13 @@ public func configure(_ app: Application) throws {
 //        database: Environment.get("DATABASE_NAME") ?? "vapor_database"
 //        ), as: .psql)
     
-    let routers: [RouteCollection] = [
-        FrontendRouter(),
-        BlogRouter(),
+    let modules: [Module] = [
+        FrontendModule(),
+        BlogModule(),
     ]
-    for router in routers {
-        try router.boot(routes: app.routes)
+
+    for module in modules {
+        try module.configure(app)
     }
     
 }
