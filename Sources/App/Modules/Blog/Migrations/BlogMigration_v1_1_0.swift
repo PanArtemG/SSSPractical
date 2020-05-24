@@ -1,23 +1,23 @@
+////
+////  BlogMigration_v1_1_0.swift
+////  App
+////
+////  Created by Artem Panasenko on 24.05.2020.
+////
 //
-//  BlogMigration_v1_1_0.swift
-//  App
+//import Fluent
 //
-//  Created by Artem Panasenko on 24.05.2020.
+//struct BlogMigration_v1_1_0: Migration {
 //
-
-import Fluent
-
-struct BlogMigration_v1_1_0: Migration {
-
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(BlogPostModel.schema)
-            .field(BlogPostModel.FieldKeys.imageKey, .string)
-            .update()
-    }
-    
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(BlogPostModel.schema)
-            .deleteField(BlogPostModel.FieldKeys.imageKey)
-            .update()
-    }
-}
+//    func prepare(on database: Database) -> EventLoopFuture<Void> {
+//        database.schema(BlogPostModel.schema)
+//            .field(BlogPostModel.FieldKeys.imageKey, .string)
+//            .update()
+//    }
+//    
+//    func revert(on database: Database) -> EventLoopFuture<Void> {
+//        database.schema(BlogPostModel.schema)
+//            .deleteField(BlogPostModel.FieldKeys.imageKey)
+//            .update()
+//    }
+//}
