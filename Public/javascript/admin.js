@@ -1,6 +1,6 @@
 function confirmDelete(path, id) {
-  if (confirm("Press ok to confirm delete.")) {
-     var xmlHttp = new XMLHttpRequest();
+    if (confirm("Press ok to confirm delete.")) {
+        var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {
             if (xmlHttp.readyState != 4 || xmlHttp.status != 200) {
                 return;
@@ -11,5 +11,12 @@ function confirmDelete(path, id) {
         }
         xmlHttp.open("POST", path + id + "/delete", true);
         xmlHttp.send(null);
-  }
+    }
 }
+
+document.addEventListener("keydown", function(e) {
+    if ( (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) && e.keyCode == 83 ) {
+        e.preventDefault();
+        document.forms[0].submit();
+    }
+}, false);
