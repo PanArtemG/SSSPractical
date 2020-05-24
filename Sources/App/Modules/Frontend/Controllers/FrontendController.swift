@@ -1,10 +1,3 @@
-//
-//  Frontend.swift
-//  App
-//
-//  Created by Artem Panasenko on 23.05.2020.
-//
-
 import Foundation
 import Vapor
 

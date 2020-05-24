@@ -1,33 +1,23 @@
-//
-//  BlogCategoryModel.swift
-//  App
-//
-//  Created by Artem Panasenko on 24.05.2020.
-//
-
 import Vapor
 import Fluent
 
 final class BlogCategoryModel: Model {
-    
+
     static let schema = "blog_categories"
     
     struct FieldKeys {
         static var title: FieldKey { "title" }
     }
     
-    @ID() var
-    id: UUID?
-    
-    @Field(key: FieldKeys.title)
-    var title: String
-    
-    @Children(for: \.$category)
-    var posts: [BlogPostModel]
+    @ID() var id: UUID?
+    @Field(key: FieldKeys.title) var title: String
+    @Children(for: \.$category) var posts: [BlogPostModel]
     
     init() { }
     
-    init(id: UUID? = nil, title: String) {
+    init(id: UUID? = nil,
+         title: String)
+    {
         self.id = id
         self.title = title
     }
@@ -47,3 +37,10 @@ extension BlogCategoryModel {
 
     var viewContext: ViewContext { .init(model: self) }
 }
+
+extension BlogCategoryModel: FormFieldOptionRepresentable {
+    var formFieldOption: FormFieldOption {
+        .init(key: self.id!.uuidString, label: self.title)
+    }
+}
+

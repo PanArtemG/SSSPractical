@@ -1,14 +1,9 @@
-//
-//  UserModule.swift
-//  App
-//
-//  Created by Artem Panasenko on 24.05.2020.
-//
-
 import Vapor
 import Fluent
 
 struct UserModule: Module {
+
+    static var name: String = "user"
     
     var router: RouteCollection? { UserRouter() }
     

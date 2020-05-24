@@ -1,10 +1,3 @@
-//
-//  UserModel.swift
-//  App
-//
-//  Created by Artem Panasenko on 24.05.2020.
-//
-
 import Vapor
 import Fluent
 
@@ -41,4 +34,6 @@ extension UserModel: SessionAuthenticatable {
     var sessionID: SessionID { self.id! }
 }
 
-extension UserModel: Authenticatable {}
+extension UserModel: Authenticatable {
+    
+}

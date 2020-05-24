@@ -1,10 +1,3 @@
-//
-//  UserModelCredentialsAuthenticator.swift
-//  App
-//
-//  Created by Artem Panasenko on 24.05.2020.
-//
-
 import Vapor
 import Fluent
 
@@ -14,10 +7,11 @@ struct UserModelCredentialsAuthenticator: CredentialsAuthenticator {
         let email: String
         let password: String
     }
-    
+
     typealias Credentials = Input
-    
-    func authenticate(credentials: Credentials, for req: Request) -> EventLoopFuture<Void> {
+
+    func authenticate(credentials: Credentials,
+                      for req: Request) -> EventLoopFuture<Void> {
         UserModel.query(on: req.db)
             .filter(\.$email == credentials.email)
             .first()
@@ -25,13 +19,15 @@ struct UserModelCredentialsAuthenticator: CredentialsAuthenticator {
                 do {
                     if
                         let user = $0,
-                        try Bcrypt.verify(credentials.password, created: user.password) {
+                        try Bcrypt.verify(credentials.password,
+                                          created: user.password)
+                    {
                         req.auth.login(user)
                     }
                 }
                 catch {
                     // do nothing...
                 }
-        }
+            }
     }
 }
