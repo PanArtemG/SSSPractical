@@ -28,7 +28,7 @@ struct BlogFrontendController {
                                                 post: $0.viewContext) }
             .flatMap {
                 let context = Context(title: "myPage - Blog", items: $0)
-                return req.view.render("blog", context)
+                return req.view.render("Blog/Frontend/Blog", context)
             }
     }
     

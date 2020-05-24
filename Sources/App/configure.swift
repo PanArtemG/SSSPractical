@@ -12,8 +12,7 @@ public func configure(_ app: Application) throws {
 
     let workingDirectory = app.directory.workingDirectory
     app.leaf.configuration.rootDirectory = "/"
-    app.leaf.files = ModularViewFiles(workingDirectory: workingDirectory,
-                                      fileio: app.fileio)
+    app.leaf.files = ModularViewFiles(workingDirectory: workingDirectory, fileio: app.fileio)
 
     app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
 
